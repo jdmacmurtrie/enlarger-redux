@@ -1,47 +1,64 @@
 import React from 'react';
-import FormContainer from './formContainer'
-import List from '../components/list'
-import { connect } from 'react-redux';
-import { clearForm, submitForm } from '../actions/form';
+// import { connect } from 'react-redux';
+// import { clearForm, submitForm } from '../actions/form';
 
 class App extends React.Component {
-
-  addNewItems(formPayload) {
-    props.submitForm(formPayload)
-    props.clearForm
+  constructor(props) {
+  super(props);
+  this.state = {
+      normal: true,
+      large: false
+    };
+    this.handleSizeChange = this.handleSizeChange.bind(this)
+    this.bloat = this.bloat.bind(this)
+    this.shrink = this.shrink.bind(this)
   }
 
+handleSizeChange() {
+  if(this.state.normal) {
+    this.bloat()
+  } else {
+    this.shrink()
+  }
+}
+
+ bloat() {
+   this.setState({ normal: false, large: true })
+ }
+
+ shrink() {
+   this.setState({ normal: true, large: false })
+ }
+
    render() {
-     let listOfItems;
-     if (this.props.listItems.first) {
-     let listOfItems = this.props.listItems.map(item => {
-       return(
-         <List item={item}/>
-       )
-     })
-   }
+     let size
+     if (this.state.large) {
+       size = "big"
+     } else {
+       size = "normal"
+     }
+
       return (
-         <div className="goodStuff">
-         <FormContainer addNewItems={this.addNewItems}/>
-         <ol>
-           {listOfItems}
-         </ol>
+         <div className="goodStuff" onClick={this.handleSizeChange}>
+          <div className={size}>
+             Click Me!
+           </div>
          </div>
       );
    }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    clearForm: () => dispatch(clearForm()),
-    submitForm: () => dispatch(submitForm())
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    listItems: state.itemList,
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     clearForm: () => dispatch(clearForm()),
+//     submitForm: () => dispatch(submitForm())
+//   }
+// }
+//
+// const mapStateToProps = (state) => {
+//   return {
+//     listItems: state.listItems.message,
+//   }
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
