@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './containers/App.js';
-import form from './reducers/form'
+import sizeAdjust from './reducers/sizeAdjust'
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux'
 
-const store = createStore(form)
+const store = createStore(sizeAdjust)
 
 ReactDOM.render(
   <Provider store={store}>
