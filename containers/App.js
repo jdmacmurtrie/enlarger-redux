@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bloat, shrink } from '../actions/sizeAdjust';
+import { change } from '../actions/sizeAdjust';
 
 const App = props => {
   let handleSizeChange = () => {
     if(props.size == 'normal') {
-      props.bloat("bloated")
+      props.change("bloated")
     } else {
-      props.shrink("normal")
+      props.change("normal")
     }
   }
 
@@ -22,8 +22,7 @@ const App = props => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    bloat: () => dispatch(bloat()),
-    shrink: () => dispatch(shrink())
+    change: (size) => dispatch(change(size))
   }
 }
 
