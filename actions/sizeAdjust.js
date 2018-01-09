@@ -1,17 +1,15 @@
 export const BLOAT = "BLOAT"
 export const SHRINK = "SHRINK"
 
-let bloat = (size) => {
+let bloat = () => {
   return {
-    type: BLOAT,
-    size
+    type: BLOAT
   }
 }
 
-let shrink = (size) => {
+let shrink = () => {
   return {
-    type: SHRINK,
-    size
+    type: SHRINK
   }
 }
 
