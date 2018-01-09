@@ -5,9 +5,9 @@ import { bloat, shrink } from '../actions/sizeAdjust';
 const App = props => {
   let handleSizeChange = () => {
     if(props.size == 'normal') {
-      props.bloat("bloated")
+      props.bloat()
     } else {
-      props.shrink("normal")
+      props.shrink()
     }
   }
 
